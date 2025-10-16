@@ -1,5 +1,81 @@
 <html>
-<body>
-<p>Placeholder Web Page for botfinder.net</p>
-</body>
+    <head>
+        <title>Botfunder Home Page</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+        <link rel="stylesheet" href="index.css" />
+    </head>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+    <style>
+        body {
+            background-color: #101010;
+        }
+    </style>
+    <body>
+        <div class="bg-dark container col-xxl-8 px-4 py-5">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5" id="about">
+                <div class="col-10 col-sm-8 col-lg-6">
+                    <img src="robot-1.jpg" class="d-block mx-lg-auto img-fluid" alt="Broomba - Robot 2023" width="193" height="256" loading="lazy" />
+                </div>
+                <div class="col-lg-6 text-white">
+                    <h1 class="display-5 fw-bold">Botfunder - About Us</h1>
+                    <p class="fs-5 mb-4"><a href="https://wjblack.com">BJ Black</a>, mentor for the <a ref="https://riverbots.org">Astoria High School Robotics Team</a> since 2021, started Botfunder as a side project to use technology to help fundraise for <a href="https://riverbots.org">FRC Team #6845</a>.</p>
+                    <p class="fs-5 mb-4">Want to check out the Switch System Info concept demo?  Click <a href="#demo">here</a> to jump down to that.</p>
+                </div>
+            </div>
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5" id="riverbots">
+                <div class="col-10 col-sm-8 col-lg-6">
+                    <img src="riverbots-1.jpg" class="d-block mx-lg-auto img-fluid" alt="Riverbots - Team 2025" width="480" height="360" loading="lazy" />
+                </div>
+                <div class="col-lg-6 text-white">
+                    <h1 class="display-5 fw-bold">The Riverbots</h1>
+                    <h2 class="display-8 fw-bold">(Who's Being Funded)</h2>
+                    <p class="fs-5 mb-4">Located in beautiful Astoria, Oregon, <a href="https://ahs.astoria.k12.or.us/">Astoria High School</a> is Astoria's only high school and home to the <a href="https://firstinspires.org">FIRST Robotics</a> Team #6845: the <a href="https://riverbots.org">Riverbots</a>.  With an annual season running approximately from January through March (longer with playoffs if we're lucky), around a dozen students every year learn STEM skills such as:
+                        <ul class="fs-5 mb-4">
+                            <li>Mechanical Engineering and Fabrication (designing and assembling the physical bits of the bot).</li>
+                            <li>Electronics (wiring up the robot for both power distribution and control).</li>
+                            <li>Computer Engineering (learning the FRC's bespoke runtime environment and writing custom code against it).</li>
+                        </ul>
+                    </p>
+                    <p class="fs-5 mb-4">Additionally, this is a great opportunity to create projects for community service, outreach to other local schools, and marketing and design.</p>
+                </div>
+            </div>
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5" id="switch_info">
+                <div class="col-10 col-sm-8 col-lg-6">
+                    <img src="switch.jpg" class="d-block mx-lg-auto img-fluid" alt="Nintendo Switch" width="480" height="361" loading="lazy" />
+                </div>
+                <div class="col-lg-6 text-white">
+                    <h1 class="display-5 fw-bold">Switch Info</h1>
+                    <p class="fs-5 mb-4">Being avid Switch/Switch2 gamers ourselves (some of whom have first-gen Switch consoles that are several years old), we realized that there's one kind of application that's sorely missing from the Nintendo ecosystem:  System Information in Gory Depth!  The goal of the <b>Switch Info</b> app is to:
+                        <ul class="fs-5 mb-4">
+                            <li>Expose system health info that's in the Switch API, but not exposed fully in the GUI, such as battery charge speed, health, and connected devices,</li>
+                            <li>Expose network info, such as ping times to common Internet sites, the external IP of the Switch, etc, and</li>
+                            <li>Any other system or environment information.</li>
+                        </ul>
+                    </p>
+                    <p class="fs-5 mb-4">The general plan is to use the <a href="https://www.rawrlab.com/godot_nintendo_switch_free_port.html">Switch/Switch2 Port of the Godot Game Engine</a> to create a 2D game engine-style display of the hardware and network info across several screens and to make the utility available at low cost via the <a href="https://www.nintendo.com/us/store/">Nintendo Store</a> for digital download.
+                    </p>
+                </div>
+            </div>
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5" id="demo">
+                <div class="col-10 col-sm-8 col-lg-6">
+                    <img src="placeholder.jpg" class="d-block mx-lg-auto img-fluid" alt="Concept Demo" width="640" height="300" loading="lazy" />
+                </div>
+                <div class="col-lg-6 text-white">
+                    <h1 class="display-5 fw-bold">Concept Demo</h1>
+                    <p class="fs-5 mb-4">Want to see what this looks like when run in a browser?  Check out the conceptual demo below:</p>
+                    <button id="run_demo" type="button" class="btn btn-primary btn-lg px-4 me-md-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-rocket-takeoff" viewBox="0 0 16 16">
+                            <path d="M9.752 6.193c.599.6 1.73.437 2.528-.362s.96-1.932.362-2.531c-.599-.6-1.73-.438-2.528.361-.798.8-.96 1.933-.362 2.532"></path>
+                            <path d="M15.811 3.312c-.363 1.534-1.334 3.626-3.64 6.218l-.24 2.408a2.56 2.56 0 0 1-.732 1.526L8.817 15.85a.51.51 0 0 1-.867-.434l.27-1.899c.04-.28-.013-.593-.131-.956a9 9 0 0 0-.249-.657l-.082-.202c-.815-.197-1.578-.662-2.191-1.277-.614-.615-1.079-1.379-1.275-2.195l-.203-.083a10 10 0 0 0-.655-.248c-.363-.119-.675-.172-.955-.132l-1.896.27A.51.51 0 0 1 .15 7.17l2.382-2.386c.41-.41.947-.67 1.524-.734h.006l2.4-.238C9.005 1.55 11.087.582 12.623.208c.89-.217 1.59-.232 2.08-.188.244.023.435.06.57.093q.1.026.16.045c.184.06.279.13.351.295l.029.073a3.5 3.5 0 0 1 .157.721c.055.485.051 1.178-.159 2.065m-4.828 7.475.04-.04-.107 1.081a1.54 1.54 0 0 1-.44.913l-1.298 1.3.054-.38c.072-.506-.034-.993-.172-1.418a9 9 0 0 0-.164-.45c.738-.065 1.462-.38 2.087-1.006M5.205 5c-.625.626-.94 1.351-1.004 2.09a9 9 0 0 0-.45-.164c-.424-.138-.91-.244-1.416-.172l-.38.054 1.3-1.3c.245-.246.566-.401.91-.44l1.08-.107zm9.406-3.961c-.38-.034-.967-.027-1.746.163-1.558.38-3.917 1.496-6.937 4.521-.62.62-.799 1.34-.687 2.051.107.676.483 1.362 1.048 1.928.564.565 1.25.941 1.924 1.049.71.112 1.429-.067 2.048-.688 3.079-3.083 4.192-5.444 4.556-6.987.183-.771.18-1.345.138-1.713a3 3 0 0 0-.045-.283 3 3 0 0 0-.3-.041Z"></path>
+                            <path d="M7.009 12.139a7.6 7.6 0 0 1-1.804-1.352A7.6 7.6 0 0 1 3.794 8.86c-1.102.992-1.965 5.054-1.839 5.18.125.126 3.936-.896 5.054-1.902Z"></path>
+                        </svg>
+                        Run Browser Demo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
+<!-- vim: set tabstop=4 shiftwidth=4 expandtab softtabstop=0 autoindent smarttab: -->
