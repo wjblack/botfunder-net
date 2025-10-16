@@ -1,7 +1,7 @@
 // Set up the demo button.
 $( document ).ready(function() {
     $("#run_demo").click(function() {
-        alert("Not implemented yet.");
+        window.open("//demo.botfunder.net", "_blank");
     });
 });
 
