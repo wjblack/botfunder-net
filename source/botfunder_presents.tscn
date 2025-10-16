@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3 uid="uid://dyxd3mmjjjrym"]
+
+[ext_resource type="FontFile" uid="uid://4t1v0kinnyoe" path="res://backgrounds/Roboto-Bold.ttf" id="1_owfqo"]
+[ext_resource type="Script" uid="uid://c7p077v5i7884" path="res://botfunder_presents.gd" id="1_x3eop"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_x3eop"]
+font = ExtResource("1_owfqo")
+font_size = 36
+font_color = Color(0.7571593, 0.3737365, 0.9407084, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_egydj"]
+font = ExtResource("1_owfqo")
+font_size = 60
+font_color = Color(0.40777442, 0.72050536, 0.86395097, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_t5583"]
+font = ExtResource("1_owfqo")
+font_size = 36
+font_color = Color(1, 0.7176471, 0.7137255, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x3eop"]
+size = Vector2(1292, 713)
+
+[node name="BotfunderPresents" type="Area2D"]
+script = ExtResource("1_x3eop")
+
+[node name="BotfinderPresents" type="Label" parent="."]
+visible = false
+offset_left = -159.0
+offset_top = -188.0
+offset_right = 166.0
+offset_bottom = -145.0
+text = "Botfunder Presents:"
+label_settings = SubResource("LabelSettings_x3eop")
+
+[node name="PresentsTimer" type="Timer" parent="BotfinderPresents"]
+one_shot = true
+autostart = true
+
+[node name="SwitchSystemInfo" type="Label" parent="."]
+visible = false
+offset_left = -257.0
+offset_top = -41.0
+offset_right = 264.0
+offset_bottom = 30.0
+text = "Switch System Info"
+label_settings = SubResource("LabelSettings_egydj")
+
+[node name="SysinfoTimer" type="Timer" parent="SwitchSystemInfo"]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="ClickToStart" type="Label" parent="."]
+visible = false
+offset_left = -210.0
+offset_top = 127.0
+offset_right = 216.0
+offset_bottom = 170.0
+text = "- Click Anywhere to Start -"
+label_settings = SubResource("LabelSettings_t5583")
+
+[node name="StartTimer" type="Timer" parent="ClickToStart"]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -1.5)
+shape = SubResource("RectangleShape2D_x3eop")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="timeout" from="BotfinderPresents/PresentsTimer" to="." method="_on_presents_timer_timeout"]
+[connection signal="timeout" from="SwitchSystemInfo/SysinfoTimer" to="." method="_on_sysinfo_timer_timeout"]
+[connection signal="timeout" from="ClickToStart/StartTimer" to="." method="_on_start_timer_timeout"]
