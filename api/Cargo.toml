@@ -1,0 +1,15 @@
+[package]
+name = "botfunder-net-api"
+version = "0.1.0"
+edition = "2021"
+authors = ["BJ Black <bj@wjblack.com>"]
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+worker = { version = "0.6" }
+worker-macros = { version = "0.6" }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+web-time = "1.1.0"

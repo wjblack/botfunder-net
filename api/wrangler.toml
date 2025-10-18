@@ -1,0 +1,6 @@
+name = "botfunder-net-api"
+main = "build/index.js"
+compatibility_date = "2025-10-18"
+
+[build]
+command = "cargo install -q worker-build && worker-build --release"
