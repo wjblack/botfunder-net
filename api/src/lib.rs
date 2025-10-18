@@ -2,7 +2,6 @@ use worker::*;
 use web_time::{SystemTime, UNIX_EPOCH};
 use serde::Serialize;
 
-
 // Following the router pattern in https://github.com/cloudflare/workers-rs#or-use-the-router
 #[event(fetch)]
 async fn main(req: Request, env: Env, _ctx: worker::Context) -> Result<Response> {
@@ -41,9 +40,8 @@ async fn main(req: Request, env: Env, _ctx: worker::Context) -> Result<Response>
             Err(_error) => 0,
         };
 
-        // Spit out the prettified JSON version of the Ping struct.
-        let ret = serde_json::to_string_pretty(&ping).unwrap();
-        Response::ok(ret)
+        // Spit out the JSON version of the Ping struct.
+        Response::from_json(&ping)
     })
     .run(req, env).await
 }
