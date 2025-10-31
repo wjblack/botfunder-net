@@ -39,11 +39,11 @@ autostart = true
 
 [node name="SwitchSystemInfo" type="Label" parent="."]
 visible = false
-offset_left = -257.0
+offset_left = -217.0
 offset_top = -41.0
-offset_right = 264.0
+offset_right = 218.0
 offset_bottom = 30.0
-text = "Switch System Info"
+text = "Switch Explorer"
 label_settings = SubResource("LabelSettings_egydj")
 
 [node name="SysinfoTimer" type="Timer" parent="SwitchSystemInfo"]

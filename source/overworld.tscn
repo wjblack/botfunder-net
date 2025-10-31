@@ -1,0 +1,94 @@
+[gd_scene load_steps=13 format=3 uid="uid://tcsba23786qv"]
+
+[ext_resource type="Texture2D" uid="uid://21w6bhxd3fea" path="res://backgrounds/pcb-lower.jpg" id="1_6jwp1"]
+[ext_resource type="Script" uid="uid://4gr3voe68sxl" path="res://overworld.gd" id="1_87uyu"]
+[ext_resource type="Texture2D" uid="uid://bt6b7unu4rngf" path="res://backgrounds/blurry.png" id="2_nyb65"]
+[ext_resource type="PackedScene" uid="uid://ds2v37l0wsp3u" path="res://broomba.tscn" id="2_v726c"]
+[ext_resource type="Texture2D" uid="uid://xeei8nxnsle4" path="res://backgrounds/blurry-white.png" id="3_824ie"]
+[ext_resource type="Texture2D" uid="uid://cywuifj3qay0k" path="res://backgrounds/highlights.png" id="4_omswd"]
+[ext_resource type="AudioStream" uid="uid://cfj8fwjr1fxno" path="res://music/ChipTune_cc_att_to_YipYep.mp3" id="6_m4qw5"]
+[ext_resource type="PackedScene" uid="uid://cwioytg6caemq" path="res://chopper.tscn" id="8_5xcxp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_87uyu"]
+size = Vector2(3300, 63)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5xcxp"]
+size = Vector2(80, 2497)
+
+[sub_resource type="Gradient" id="Gradient_87uyu"]
+offsets = PackedFloat32Array(0.9933775, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5xcxp"]
+gradient = SubResource("Gradient_87uyu")
+
+[node name="Overworld" type="Node2D"]
+script = ExtResource("1_87uyu")
+
+[node name="Bottom" type="Sprite2D" parent="."]
+texture = ExtResource("1_6jwp1")
+
+[node name="Middle" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(1500, 800)
+autoscroll = Vector2(20, 20)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Middle"]
+scale = Vector2(2, 2)
+texture = ExtResource("2_nyb65")
+
+[node name="Top" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.8, 0.8)
+repeat_size = Vector2(1700, 960)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Top"]
+scale = Vector2(2.2, 2.2)
+texture = ExtResource("3_824ie")
+
+[node name="Highlights" type="Parallax2D" parent="."]
+repeat_size = Vector2(1920, 1080)
+autoscroll = Vector2(10, 0)
+repeat_times = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="Highlights"]
+texture = ExtResource("4_omswd")
+
+[node name="Boundaries" type="RigidBody2D" parent="."]
+freeze = true
+
+[node name="Top" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(2, -1213)
+shape = SubResource("RectangleShape2D_87uyu")
+
+[node name="Bottom" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(-25, 1237)
+shape = SubResource("RectangleShape2D_87uyu")
+
+[node name="Left" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(-1638, -20)
+shape = SubResource("RectangleShape2D_5xcxp")
+
+[node name="Right" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(1625, -35)
+shape = SubResource("RectangleShape2D_5xcxp")
+
+[node name="Broomba" parent="." instance=ExtResource("2_v726c")]
+visible = false
+position = Vector2(9, 841)
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_m4qw5")
+parameters/looping = true
+
+[node name="Fade" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-8.9999695, -1)
+scale = Vector2(12.703125, 2454.0002)
+texture = SubResource("GradientTexture1D_5xcxp")
+
+[node name="Chopper" parent="." instance=ExtResource("8_5xcxp")]
+position = Vector2(406.99997, 1237)
+rotation = 0.7853982
+
+[connection signal="finished" from="BGM" to="." method="_on_bgm_finished"]

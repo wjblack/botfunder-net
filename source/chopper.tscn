@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://cwioytg6caemq"]
+
+[ext_resource type="Texture2D" uid="uid://2kpfce63u52l" path="res://sprites/chopper-base.png" id="1_48qdx"]
+[ext_resource type="Texture2D" uid="uid://d4a37xpkf8o7i" path="res://sprites/chopper-top-rotor-sheet.png" id="2_41gt4"]
+[ext_resource type="Texture2D" uid="uid://be6gfovpnuude" path="res://sprites/chopper-tail-rotor-sheet.png" id="3_41gt4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2ufw"]
+atlas = ExtResource("2_41gt4")
+region = Rect2(0, 0, 223, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wc6u5"]
+atlas = ExtResource("2_41gt4")
+region = Rect2(0, 10, 223, 5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j4jqa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2ufw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wc6u5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4jqa"]
+atlas = ExtResource("3_41gt4")
+region = Rect2(0, 0, 31, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_870cj"]
+atlas = ExtResource("3_41gt4")
+region = Rect2(31, 0, 31, 31)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pqc8u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j4jqa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_870cj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_41gt4"]
+size = Vector2(309, 95)
+
+[node name="Chopper" type="CharacterBody2D"]
+
+[node name="Body" type="Sprite2D" parent="."]
+position = Vector2(47, 31)
+texture = ExtResource("1_48qdx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_j4jqa")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(143, 26)
+sprite_frames = SubResource("SpriteFrames_pqc8u")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(13.5, 37.5)
+shape = SubResource("RectangleShape2D_41gt4")

@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://ds2v37l0wsp3u"]
+
+[ext_resource type="Script" uid="uid://dqjhh047rxky3" path="res://broomba.gd" id="1_okb04"]
+[ext_resource type="Texture2D" uid="uid://ck7aabwagio4j" path="res://sprites/broomba-sprites.png" id="1_xvpgm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okb04"]
+atlas = ExtResource("1_xvpgm")
+region = Rect2(0, 0, 99, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5a6q"]
+atlas = ExtResource("1_xvpgm")
+region = Rect2(0, 57, 99, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lshv5"]
+atlas = ExtResource("1_xvpgm")
+region = Rect2(0, 114, 99, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uetyr"]
+atlas = ExtResource("1_xvpgm")
+region = Rect2(0, 171, 99, 57)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0ynk1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_okb04")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5a6q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lshv5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uetyr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7yqpw"]
+size = Vector2(10, 54)
+
+[node name="Broomba" type="CharacterBody2D"]
+script = ExtResource("1_okb04")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0ynk1")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(45, 0)
+shape = SubResource("RectangleShape2D_7yqpw")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_smoothed = true
+position_smoothing_enabled = true

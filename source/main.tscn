@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dfoe04ey7vwma"]
+[gd_scene load_steps=17 format=3 uid="uid://dfoe04ey7vwma"]
 
 [ext_resource type="Shader" uid="uid://cus0rfmfusw2d" path="res://backgrounds/background.gdshader" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://dkebylnb88csn" path="res://main.gd" id="1_272bh"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://jl0wukmkm07u" path="res://backgrounds/skill-desc_0002_far-buildings.png" id="3_lquwl"]
 [ext_resource type="Texture2D" uid="uid://bkeebi73y37ym" path="res://backgrounds/skill-desc_0000_foreground.png" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://dyxd3mmjjjrym" path="res://botfunder_presents.tscn" id="6_7mycd"]
+[ext_resource type="AudioStream" uid="uid://dyhr5kfnwyta3" path="res://music/OpeningTheme.mp3" id="7_272bh"]
+[ext_resource type="PackedScene" uid="uid://cwioytg6caemq" path="res://chopper.tscn" id="8_5vw27"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1bvp3"]
 shader = ExtResource("1_0xm2m")
@@ -28,41 +30,73 @@ shader = ExtResource("1_0xm2m")
 shader_parameter/direction = Vector2(1, 0)
 shader_parameter/speed = 0.4
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vw27"]
+size = Vector2(1293, 718)
+
+[sub_resource type="Gradient" id="Gradient_kek77"]
+offsets = PackedFloat32Array(0, 0.024539877)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4c57u"]
+gradient = SubResource("Gradient_kek77")
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_272bh")
-
-[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="IndustrialBackground" type="Area2D" parent="."]
 
 [node name="WorldBG" type="Sprite2D" parent="IndustrialBackground"]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_1bvp3")
-position = Vector2(0.50001526, 0)
-scale = Vector2(4.6875, 4.5)
+position = Vector2(2.499888, -1.0000161)
+scale = Vector2(4.724264, 4.5)
 texture = ExtResource("2_h2yge")
 
 [node name="WorldBGBuildingsFar" type="Sprite2D" parent="IndustrialBackground"]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_lquwl")
-position = Vector2(0.49998474, 1.0000038)
-scale = Vector2(6.0234747, 5.0422535)
+position = Vector2(2.4999914, -1.0000648)
+scale = Vector2(6.0328636, 5.0704217)
 texture = ExtResource("3_lquwl")
 
 [node name="WorldBGBuildingsNear" type="Sprite2D" parent="IndustrialBackground"]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_272bh")
-position = Vector2(1.0000305, -1.5000153)
-scale = Vector2(4.713236, 4.753333)
+position = Vector2(2.499958, -0.9999902)
+scale = Vector2(4.7242646, 4.8000007)
 texture = ExtResource("3_h2yge")
 
 [node name="WorldFG" type="Sprite2D" parent="IndustrialBackground"]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_5vw27")
-position = Vector2(2.4999847, -3.5)
-scale = Vector2(4.7242646, 6.9134617)
+position = Vector2(2.4999847, -0.9999846)
+scale = Vector2(4.7242646, 6.923076)
 texture = ExtResource("5_7mycd")
 
 [node name="BotfunderPresents" parent="." instance=ExtResource("6_7mycd")]
 
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_272bh")
+autoplay = true
+parameters/looping = true
+
+[node name="Chopper" parent="." instance=ExtResource("8_5vw27")]
+position = Vector2(-457, -105)
+scale = Vector2(-1, 1)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1.5, -2)
+shape = SubResource("RectangleShape2D_5vw27")
+
+[node name="Fade" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-2, 1)
+scale = Vector2(5.1015625, 724)
+texture = SubResource("GradientTexture1D_4c57u")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="ready" from="IndustrialBackground" to="." method="_on_industrial_background_ready"]
 [connection signal="visibility_changed" from="BotfunderPresents" to="." method="_on_botfunder_presents_visibility_changed"]
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
