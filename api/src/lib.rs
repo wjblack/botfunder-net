@@ -18,6 +18,7 @@ async fn main(req: Request, env: Env, _ctx: worker::Context) -> Result<Response>
             notes: String,
             ip: String,
             timestamp: u128,
+            country: String,
         }
 
         // Create the struct with default elements.
@@ -26,6 +27,7 @@ async fn main(req: Request, env: Env, _ctx: worker::Context) -> Result<Response>
             notes: String::from("Your request's IP address and my current system time in millis are below."),
             ip: String::from("Unknown"),
             timestamp: 0,
+            country: String::from("XX"),
         };
 
         // Try to extract the IP from Cloudflare's passed-in header.
@@ -39,6 +41,12 @@ async fn main(req: Request, env: Env, _ctx: worker::Context) -> Result<Response>
             Ok(stamp) => stamp.as_millis(),
             Err(_error) => 0,
         };
+
+        // Try to grab the origin country.
+        let cf_country = req.headers().get("cf-ipcountry").unwrap_or(None);
+        if cf_country != None {
+            ping.country = cf_country.unwrap();
+        }
 
         // Spit out the JSON version of the Ping struct.
         Response::from_json(&ping)
